@@ -1,5 +1,6 @@
 package com.cxy.algorithm;
 
+
 import java.util.Scanner;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Scanner;
 public class ArrayQueueDemo {
     public static void main(String[] args) {
         //创建一个队列。
-//        ArrayQueue queue = new ArrayQueue(3);
+        ArrayQueue queue = new ArrayQueue(3);
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
         //输出一个菜单
@@ -23,36 +24,38 @@ public class ArrayQueueDemo {
             char key = scanner.next().charAt(0);//接收一个字符。
             switch (key) {
                 case 's':
-
+                    queue.showQueue();
+                    break;
+                case 'a':
+                    System.out.println("输出一个数");
+                    int value = scanner.nextInt();
+                    queue.addQueue(value);
+                    break;
+                case 'g'://取出数据
+                    try{
+                        int res = queue.headQueue();
+                        System.out.printf("队列头的数据是%d\n", res);
+                    }catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 'h': //查看队列头的数据
+                    try {
+                        int res = queue.headQueue();
+                        System.out.printf("队列头的数据是%d\n", res);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 'e'://退出
+                    scanner.close();
+                    loop =false;
+                    break;
+                    default:
+                        break;
             }
-
-
         }
-
-
-    }
-
-    // 使用数组模拟队列-编写一个类。
-    class ArrayQueue {
-        private int maxSize; //表示数组的最大容量
-        private int front;//队列头
-        private int rear;//队列尾
-        private int[] arr;//该数据用于存放数据，模拟队列
-
-        //创建队列的构造器
-        public ArrayQueue(int arrMaxSize){
-            maxSize = arrMaxSize;
-            arr = new int[maxSize];
-            front = -1;//指向队列头部，分析出front是指向队列头的前一个位置。
-            rear = -1;//指向队列尾，指向队列尾的数据，既就是队列的最后一个数据。
-        }
-        //判断队列是否满
-        public boolean isFull(){
-            return rear == maxSize -1;
-        }
-
-
-
+        System.out.println("程序退出");
 
     }
 
